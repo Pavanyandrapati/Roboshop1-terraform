@@ -11,7 +11,6 @@ output "frontend" {
   value = aws_instance.frontend.public_ip
 }
 
-/*
 resource "aws_route53_record" "frontend" {
   zone_id = "Z08045122E2EQN1OR1WS6"
   name    = "frontend-dev.pavan345.online"
