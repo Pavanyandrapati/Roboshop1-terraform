@@ -23,13 +23,13 @@ resource "aws_instance" "instances" {
   }
 }
 
-  resource "aws_route53_record" "components" {
-    zone_id = "Z08045122E2EQN1OR1WS6"
-    name    = "(components)-dev.pavan345.online"
-    type    = "A"
-    ttl     = 30
-    records = [aws_instance.components.private_ip]
-  }
+ // resource "aws_route53_record" "components" {
+  //  zone_id = "Z08045122E2EQN1OR1WS6"
+  //  name    = "(components)-dev.pavan345.online"
+   // type    = "A"
+  //  ttl     = 30
+  //  records = [aws_instance.components.private_ip]
+//  }
 
 //output "frontend" {
 //value = aws_instance.frontend.public_ip
