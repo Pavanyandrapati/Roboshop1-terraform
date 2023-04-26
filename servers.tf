@@ -3,8 +3,8 @@ data "aws_ami" "centos" {
   most_recent      = true
   name_regex       = "Centos-8-DevOps-Practice"
 }
-data "aws_security_groups" "allow-all" {
-  name = "allow-all"
+data "aws_security_group" "allow-all" {
+  Group = "allow-all"
 }
 variable "instance_type" {
   default = "t3.small"
@@ -16,7 +16,7 @@ variable "components" {
 resource "aws_instance" "instances" {
   ami           = data.aws_ami.centos.image_id
  instance_type = var.instance_type
-  vpc_security_group_ids = [data.aws_security_groups.allow-all.id]
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   count = length(var.components)
 
 
