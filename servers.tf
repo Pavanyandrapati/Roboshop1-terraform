@@ -18,6 +18,8 @@ resource "aws_instance" "instances" {
  instance_type = var.instance_type
   vpc_security_group_ids = [data.aws_security_groups.allow-all.id]
   count = length(var.components)
+
+
   tags = {
     Name = var.components[count.index]
   }
