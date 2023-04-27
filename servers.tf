@@ -32,7 +32,7 @@ variable "records" {
  resource "aws_route53_record" "dns_records" {
    count = length(var.records)
     zone_id = "Z08045122E2EQN1OR1WS6"
-    name    = pavan
+    name    = var.records[count.index]
     type    = "A"
     ttl     = 30
     records = [aws_instance.instance[count.index].private_ip]
