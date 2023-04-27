@@ -27,16 +27,18 @@ resource "aws_instance" "instance" {
   }
 }
 
-//variable "private_ip"
+variable "private_ip" {
+  default = ["172.31.12.214","172.31.15.237","172.31.4.182"]
+}
 
-/// resource "aws_route53_record" "components" {
-  //  count = length(var.components)
- //   zone_id = "Z08045122E2EQN1OR1WS6"
-   // name    = "(components)-dev.pavan345.online"
-  //  type    = "A"
-  //  ttl     = 30
-  //  records = [aws_instance.("components").private_ip]
-//  }
+resource "aws_route53_record" "components" {
+    count = length(var.private_ip)
+    zone_id = "Z08045122E2EQN1OR1WS6"
+    name    = "components-dev.pavan345.online"
+    type    = "A"
+    ttl     = 30
+   records = [aws_instance.("components").private_ip]
+}
 
 //output "frontend" {
 //value = aws_instance.frontend.public_ip
