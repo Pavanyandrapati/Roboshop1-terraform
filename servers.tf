@@ -4,7 +4,6 @@ data "aws_ami" "centos" {
   name_regex       = "Centos-8-DevOps-Practice"
 }
 
-
 data "aws_security_group" "allow-all" {
   name = "allow-all"
 }
@@ -26,19 +25,18 @@ resource "aws_instance" "instance" {
     Name = var.components[count.index]
   }
 }
+variable "records" {
+  default = ["frontend-dev.pavan345.online","mongodb-dev.pavan345.online","catalogue-dev.pavan345.online"]
+  }
 
-variable "private_ip" {
-  default = ["172.31.12.214","172.31.15.237","172.31.4.182"]
-}
-
-resource "aws_route53_record" "components" {
-    count = length(var.private_ip)
+ resource "aws_route53_record" "dns_records" {
+   count = length(var.records)
     zone_id = "Z08045122E2EQN1OR1WS6"
-    name    = "components-dev.pavan345.online"
+    name    = pavan
     type    = "A"
     ttl     = 30
-   records = [aws_instance.(components).(private_ip)]
-}
+    records = [aws_instance.instance[count.index].private_ip]
+  }
 
 //output "frontend" {
 //value = aws_instance.frontend.public_ip
