@@ -16,10 +16,10 @@ variable "components" {
   default = ["frontend","mongodb","catalogue","user","cart","redis","mysql","shipping","rabbitmq","payment"]
 }
 resource "aws_instance" "instance" {
-      count = length(var.components)
-      ami           = data.aws_ami.centos.image_id
-     instance_type = var.instance_type
-      vpc_security_group_ids = [data.aws_security_group.allow-all.id]
+              count = length(var.components)
+              ami          = data.aws_ami.centos.image_id
+              instance_type = var.instance_type
+              vpc_security_group_ids = [data.aws_security_group.allow-all.id]
 
   tags = {
     Name = var.components[count.index]
