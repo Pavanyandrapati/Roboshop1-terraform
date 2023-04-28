@@ -26,9 +26,7 @@ resource "aws_instance" "instance" {
   }
 }
 variable "records" {
-  default = ["frontend-dev.pavan345.online","mongodb-dev.pavan345.online","catalogue-dev.pavan345.online","user-dev.pavan345.online",
-    "cart-dev.pavan345.online","redis-dev.pavan345.online","mysql-dev.pavan345.online","shipping-dev.pavan345.online"
-    "rabbitmq-dev.pavan345.online","payment-dev.pavan345.online"]
+  default = ["frontend-dev.pavan345.online","mongodb-dev.pavan345.online","catalogue-dev.pavan345.online","user-dev.pavan345.online", "cart-dev.pavan345.online","redis-dev.pavan345.online","mysql-dev.pavan345.online","shipping-dev.pavan345.online","rabbitmq-dev.pavan345.online","payment-dev.pavan345.online"]
   }
 
  resource "aws_route53_record" "dns_records" {
