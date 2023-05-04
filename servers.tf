@@ -10,9 +10,10 @@ resource "aws_instance" "instance" {
   }
 }
 resource "null resource" "provisioner" {
+  depends_on = [aws_instance.instance,aws_route53_record.records]
   for_each = var.components
-  provisioner "remote-exec" {}
-  connection {
+  provisioner "remote-exec" {
+    connection {
     type     = "ssh"
     user     = "centos"
     password = "DevOps321"
@@ -27,7 +28,7 @@ resource "null resource" "provisioner" {
   ]
 }
 }
-resource "aws_route53_record" "dns_records" {
+resource "aws_route53_record" "records" {
   for_each = var.components
   zone_id = "Z08045122E2EQN1OR1WS6"
   name    = "${each.value["name"]}-dev.pavan345.onine"
