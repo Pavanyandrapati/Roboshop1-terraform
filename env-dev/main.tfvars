@@ -20,7 +20,7 @@ components = {
     instance_type = "t3.small"
   }
   redis = {
-    name          = "redis"
+    name          = "Redis"
     instance_type = "t3.small"
   }
   mysql = {
