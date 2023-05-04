@@ -41,4 +41,3 @@ components = {
   }
 }
 env="dev"
-variable "dev" {}
