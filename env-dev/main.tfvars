@@ -9,11 +9,11 @@ components = {
   }
   catalogue = {
     name          = "catalogue"
-    instance_type = "t3.small"
+    instance_type = "t3.micro"
   }
   user = {
     name          = "user"
-    instance_type = "t3.small"
+    instance_type = "t3.micro"
   }
   cart = {
     name          = "cart"
