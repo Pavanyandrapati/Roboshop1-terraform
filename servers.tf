@@ -9,7 +9,24 @@ resource "aws_instance" "instance" {
     Name = each.value["name"]
   }
 }
+resource "null resource" "provisioner" {
+  for_each = var.components
+  provisioner "remote-exec" {}
+  connection {
+    type     = "ssh"
+    user     = "centos"
+    password = "DevOps321"
+    host     = aws_instance.instance[each.value["name"]].private_ip
+  }
 
+  inline = [
+    "rm -rf Roboshop1-shell",
+    "git clone https://github.com/Pavanyandrapati/Roboshop1.git"
+    "cd Roboshop1-shell"
+    "sudo bash ${each.value["name"]}.sh"
+  ]
+}
+}
 resource "aws_route53_record" "dns_records" {
   for_each = var.components
   zone_id = "Z08045122E2EQN1OR1WS6"
