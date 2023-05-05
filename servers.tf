@@ -15,20 +15,22 @@ resource "null_resource" "provisioner" {
 
   for_each = var.components
   provisioner "remote-exec" {
-    connection {
-    type     = "ssh"
-    user     = "centos"
-    password = "DevOps321"
-    host     = aws_instance.instance[each.value["name"]].private_ip
-  }
 
-  inline = [
-    "rm -rf Roboshop1",
-    "git clone https://github.com/Pavanyandrapati/Roboshop1",
-    "cd Roboshop1",
-    "sudo bash ${each.value["name"]}.sh"
-  ]
-}
+
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      password = "DevOps321"
+      host     = aws_instance.instance[each.value["name"]].private_ip
+   }
+
+    inline = [
+      "rm -rf Roboshop1",
+      "git clone https://github.com/Pavanyandrapati/Roboshop1",
+      "cd Roboshop1",
+      "sudo bash ${each.value["name"]}.sh[each.value["password"]}.private_ip
+    ]
+ }
 }
 
  resource "aws_route53_record" "records" {
