@@ -1,7 +1,7 @@
 components = {
   frontend = {
     name          = "frontend"
-    instance_type = "t3.small"
+    instance_type = "t3.micro"
   }
   mongodb = {
     name          = "mongodb"
@@ -9,19 +9,19 @@ components = {
   }
   catalogue = {
     name          = "catalogue"
-    instance_type = "t3.micro"
-  }
-  redis = {
-    name          = "redis"
     instance_type = "t3.small"
   }
   user = {
     name          = "user"
-    instance_type = "t3.micro"
+    instance_type = "t3.small"
   }
   cart = {
     name          = "cart"
-    instance_type = "t3.micro"
+    instance_type = "t3.small"
+  }
+  redis = {
+    name          = "Redis"
+    instance_type = "t3.small"
   }
   mysql = {
     name          = "mysql"
@@ -29,16 +29,15 @@ components = {
   }
   shipping = {
     name          = "shipping"
-    instance_type = "t3.medium"
+    instance_type = "t3.small"
   }
   rabbitmq = {
     name          = "rabbitmq"
-    instance_type = "t3.small"
+    instance_type = "t3.micro"
   }
   payment = {
     name          = "payment"
-    instance_type = "t3.small"
+    instance_type = "t3.micro"
   }
 }
-
-env = "prod"
+env="prod"
