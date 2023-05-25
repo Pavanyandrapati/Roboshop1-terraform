@@ -41,4 +41,3 @@ app = {
     subnet_name = "app"
   }
 }
-}
