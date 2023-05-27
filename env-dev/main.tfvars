@@ -80,7 +80,7 @@ app = {
 docdb = {
     main = {
     subnet_name = "db"
-    allow_app_cidr = "app"
+    allow_db_cidr = "app"
     engine_version = "4.0.0"
   }
 }
