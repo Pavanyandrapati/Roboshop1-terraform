@@ -39,7 +39,6 @@ module "vpc" {
   tags       = local.tags
   env        = var.env
   vpc_id = local.vpc_id
- tags = local.tags
   allow_app_cidr =lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["allow_db_cidr"], null), "subnet_cidrs", null)
  kms_arn = var.kms_arn
   engine_version = each.value["engine_version"]
