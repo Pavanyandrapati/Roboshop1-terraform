@@ -31,7 +31,7 @@ module "vpc" {
 #    allow_app_cidr = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_cidrs", null)
 #}
 
-module "vpc" {
+module "db" {
   source = "git::https://github.com/Pavanyandrapati/tf-module-docdb.git"
 
   for_each   = var.docdb
