@@ -12,22 +12,36 @@ module "vpc" {
 }
 
 
-module "app" {
-  source = "git::https://github.com/Pavanyandrapati/tf-module-app.git"
+#module "app" {
+#  source = "git::https://github.com/Pavanyandrapati/tf-module-app.git"
+#
+#  for_each      = var.app
+#  instance_type = each.value["instance_type"]
+#  name = each.value["name"]
+#  desired_capacity = each.value["desired_capacity"]
+#  max_size = each.value["max_size"]
+#  min_size = each.value["min_size"]
+#
+#  env = var.env
+#  bastion_cidr= var.bastion_cidr
+#  tags =local.tags
+#
+#  subnet_ids      =lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
+#  vpc_id =lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+#    allow_app_cidr = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_cidrs", null)
+#}
 
-  for_each      = var.app
-  instance_type = each.value["instance_type"]
-  name = each.value["name"]
-  desired_capacity = each.value["desired_capacity"]
-  max_size = each.value["max_size"]
-  min_size = each.value["min_size"]
+module "vpc" {
+  source = "git::https://github.com/Pavanyandrapati/tf-module-docdb.git"
 
-  env = var.env
-  bastion_cidr= var.bastion_cidr
-  tags =local.tags
-
-  subnet_ids      =lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
-  vpc_id =lookup(lookup(module.vpc, "main", null), "vpc_id", null)
-    allow_app_cidr = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_cidrs", null)
+  for_each   = var.docdb
+  subnets    = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
+  tags       = local.tags
+  env        = var.env
+  vpc_id = local.vpc_id
+ tags = local.tags
+  allow_app_cidr =lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["allow_db_cidr"], null), "subnet_cidrs", null)
+ kms_arn = var.kms_arn
+  engine_version = each.value["engine_version"]
 }
 
