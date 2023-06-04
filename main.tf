@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "git::https://github.com/raghudevopsb72/tf-module-vpc.git"
+  source = "git::https://github.com/Pavanyandrapati/tf-module-vpc.git"
 
   for_each   = var.vpc
   cidr_block = each.value["cidr_block"]
@@ -14,7 +14,7 @@ module "vpc" {
 
 
 module "docdb" {
-  source = "git::https://github.com/raghudevopsb72/tf-module-docdb.git"
+  source = "git::https://github.com/Pavanyandrapati/tf-module-docdb.git"
 
   for_each       = var.docdb
   subnets        = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
@@ -32,7 +32,7 @@ module "docdb" {
 
 
 module "rds" {
-  source = "git::https://github.com/raghudevopsb72/tf-module-rds.git"
+  source = "git::https://github.com/Pavanyandrapati/tf-module-rds.git"
 
   for_each       = var.rds
   subnets        = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
@@ -49,7 +49,7 @@ module "rds" {
 }
 
 module "elasticache" {
-  source = "git::https://github.com/raghudevopsb72/tf-module-elasticache.git"
+  source = "git::https://github.com/Pavanyandrapati/tf-module-elasticache.git"
 
   for_each                = var.elasticache
   subnets                 = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
@@ -67,7 +67,7 @@ module "elasticache" {
 }
 
 module "rabbitmq" {
-  source = "git::https://github.com/raghudevopsb72/tf-module-amazon-mq.git"
+  source = "git::https://github.com/Pavanyandrapati/tf-module-amazonmq.git"
 
   for_each      = var.rabbitmq
   subnets       = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
@@ -84,7 +84,7 @@ module "rabbitmq" {
 }
 
 module "alb" {
-  source = "git::https://github.com/raghudevopsb72/tf-module-alb.git"
+  source = "https://github.com/Pavanyandrapati/tf-module-alb.git"
 
   for_each       = var.alb
   subnets        = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
@@ -100,7 +100,7 @@ module "alb" {
 
 module "app" {
   depends_on = [module.vpc, module.docdb, module.rds, module.elasticache, module.rabbitmq, module.alb]
-  source     = "git::https://github.com/raghudevopsb72/tf-module-app.git"
+  source     = "git::https://github.com/Pavanyandrapati/tf-module-app.git"
 
   for_each          = var.app
   instance_type     = each.value["instance_type"]

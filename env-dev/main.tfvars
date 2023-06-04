@@ -1,12 +1,12 @@
 env              = "dev"
-monitor_cidr     = ["172.31.12.74/32"]
-bastion_cidr     = ["172.31.11.111/32"]
-default_vpc_id   = "vpc-0a8e3e6a0d6cb90d9"
+#monitor_cidr     = ["172.31.12.74/32"]
+bastion_cidr     = ["172.31.84.217/32"]
+default_vpc_id   = "vpc-0b9a596dc579401da"
 default_vpc_cidr = "172.31.0.0/16"
-default_vpc_rtid = "rtb-0b9a867762d6530ba"
-kms_arn          = "arn:aws:kms:us-east-1:633788536644:key/dce90622-5a23-4f82-a639-be841f534702"
-domain_name      = "rdevopsb72.online"
-domain_id        = "Z03986262CQPCHNJNZM9L"
+default_vpc_rtid = "rtb-06505c2979c80d74d"
+kms_arn          = "arn:aws:kms:us-east-1:613746425282:key/1f80bac5-6524-490e-9721-957e104119be"
+domain_name      = "pavan345.online"
+domain_id        = "Z08045122E2EQN1OR1WS6"
 
 
 vpc = {
