@@ -49,7 +49,7 @@ module "docdb" {
 }
 
 module "rds" {
-  source = "git::https://github.com/Pavanyandrapati/tf-module-rds.git"
+  source = "git::https://github.com/Pavanyandrapati/tf-module-rdsxx.git"
 
   for_each       = var.rds
   subnets        = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
