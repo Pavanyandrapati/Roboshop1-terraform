@@ -84,7 +84,7 @@ module "rabbitmq" {
 }
 
 module "alb" {
-  source = "https://github.com/Pavanyandrapati/tf-module-alb.git"
+  source = "git::https://github.com/Pavanyandrapati/tf-module-alb.git"
 
   for_each       = var.alb
   subnets        = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), each.value["subnet_name"], null), "subnet_ids", null)
